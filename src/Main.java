@@ -1,15 +1,36 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
-    public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+import Lesson7.*;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+public class Main {
+
+    public static void main(String[] args) {
+        createHospital();
+    }
+
+    public static void createHospital() {
+        Patient[] patients = new Patient[]{
+                new Patient(1),
+                new Patient(2),
+                new Patient(3),
+                new Patient(3),
+                new Patient(2),
+                new Patient(1),
+                new Patient(3),
+                new Patient(2),
+                new Patient(1),
+                new Patient(1),
+        };
+        Surgeon surgeon = new Surgeon();
+        Dentist dentist = new Dentist();
+        Terapist terapist = new Terapist(surgeon,dentist);
+
+        Hospital hospital = new Hospital(terapist,surgeon,dentist);
+
+        for (Patient patient : patients) {
+            hospital.getTerapist().setDoctor(patient);
+        }
+
+        for (Patient patient : patients) {
+            System.out.println(patient);
         }
     }
 }
